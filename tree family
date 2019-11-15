@@ -1,0 +1,62 @@
+<?php
+header('Content-type: text/html; charset=utf-8');
+class Person {
+    protected $name;
+    protected $surname;
+    protected $age;
+    protected $mother;
+    protected $father;
+    protected $grandmother;
+    protected $grandfather;
+    function __construct($name, $surname, $age, $mother, $father, $grandmother, $grandfather) {
+        $this->name        = $name;
+        $this->surname     = $surname;
+        $this->age         = $age;
+        $this->mother      = $mother;
+        $this->father      = $father;
+        $this->grandmother = $grandmother;
+        $this->grandfather = $grandfather;
+    }
+    function sayHi($age){
+        echo "Привет ".$name;
+    }
+    function setAge($age){
+        if ($this->age < $age) 
+        $this->age = $age;
+    }
+    function getName()        {return $this->name;}
+    function getSurname()     {return $this->surname;}
+    function getAge()         {return $this->age;}
+    function getMother()      {return $this->mother;}
+    function getFather()      {return $this->father;}
+    function getGrandmother() {return $this->grandmother;}
+    function getGrandfather() {return $this->grandfather;}
+}
+
+$nastya = new Person("Настя","Иванова",89);
+$roman  = new Person("Роман","Иванов",78);
+$greta  = new Person("Грета","Петрова",81);
+$maksim = new Person("Максим","Петров",75);
+$igor   = new Person("Игорь","Иванов",44,$nastya,$roman);
+$jula   = new Person("Юлия","Иванова",42,$greta,$maksim);
+$oleg   = new Person("Олег","Иванов",19,$jula,$igor);
+$olga   = new Person("Ольга","Иванова",14,$jula,$igor);
+
+echo "Имя:                 ".$oleg->getName()."<br>
+      Фамилия:             ".$oleg->getSurname()."<br>
+      Возраст:             ".$oleg->getAge()."<br>
+      Мать:                ".$oleg->getMother()->getName()." ".$oleg->getMother()->getSurname()."<br>
+      Отец:                ".$oleg->getFather()->getName()." ".$oleg->getFather()->getSurname()."<hr>
+      Имя:                 ".$olga->getName()."<br>
+      Фамилия:             ".$olga->getSurname()."<br>
+      Возраст:             ".$olga->getAge()."<br>
+      Мать:                ".$olga->getMother()->getName()." ".$oleg->getMother()->getSurname()."<br>
+      Отец:                ".$olga->getFather()->getName()." ".$oleg->getFather()->getSurname()."<hr>
+      Фамилия И.О. мамы:   ".$jula->getSurname()." ".mb_substr($jula->getName(),0,1).". ".mb_substr($jula->getFather()->getName(),0,1)."<br>
+      Возраст:             ".$jula->getAge()."<br>
+      Фамилия И.О. папы:   ".$igor->getSurname()." ".mb_substr($igor->getName(),0,1).". ".mb_substr($igor->getFather()->getName(),0,1)."<br>
+      Возраст:             ".$igor->getAge()."<br>
+     "
+     
+      
+?>
